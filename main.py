@@ -14,7 +14,8 @@ def genYaml(proxyies):
 
 def json2yaml(jdata, filepath: str):
     addr = jdata["server"].split(':')
-    hy2 = {"name": filepath, "type": "hysteria2", "server": addr[0], "port": int(addr[1]),
+    port = addr[1].split(',')
+    hy2 = {"name": filepath, "type": "hysteria2", "server": addr[0], "port": int(port),
            "password": jdata["auth"],
            "sni": jdata["tls"]["sni"], "skip-cert-verify": jdata["tls"]['insecure']
            }
