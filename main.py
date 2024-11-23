@@ -15,7 +15,7 @@ def genYaml(proxyies):
 def json2yaml(jdata, filepath: str):
     addr = jdata["server"].split(':')
     port = addr[1].split(',')
-    hy2 = {"name": filepath, "type": "hysteria2", "server": addr[0], "port": int(port),
+    hy2 = {"name": filepath, "type": "hysteria2", "server": addr[0], "port": int(port[0]),
            "password": jdata["auth"],
            "sni": jdata["tls"]["sni"], "skip-cert-verify": jdata["tls"]['insecure']
            }
@@ -53,7 +53,10 @@ app = FastAPI()
 @app.get("/freeproxy/hy2", response_class=PlainTextResponse)
 async def free_proxy():
     urls = { "tw": "https://www.githubip.xyz/Alvin9999/pac2/master/hysteria2/config.json",
-             "us": "https://www.gitlabip.xyz/Alvin9999/pac2/master/hysteria2/1/config.json"}
+             "us": "https://www.gitlabip.xyz/Alvin9999/pac2/master/hysteria2/1/config.json",
+             "los": "https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ipp/hysteria2/4/config.json",
+             "franch": "https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria2/3/config.json"
+           }
     proxy = []
     for k,v in urls.items():
         p = getConfig(v, k)
